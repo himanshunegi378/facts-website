@@ -9,7 +9,7 @@ let ToggleBookmark = props => {
       <input
         onClick={() => {
           axios
-            .post("http://localhost:5000/api/users/bookmark/" + props.objectID)
+            .post("/api/users/bookmark/" + props.objectID)
             .then(res => {
               console.log(res.data.msg);
             });
@@ -49,7 +49,7 @@ class facts extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5000/api/users/fetch_facts").then(res => {
+    axios.get("/api/users/fetch_facts").then(res => {
       this.setState({ facts: res.data });
     });
   }

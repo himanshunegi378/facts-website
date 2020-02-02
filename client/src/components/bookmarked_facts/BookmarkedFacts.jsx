@@ -9,7 +9,7 @@ export default class BookmarkedFacts extends Component {
     };
   }
   componentDidMount() {
-    Axios.get("http://localhost:5000/api/users/fetch_bookmarks").then(res => {
+    Axios.get("/api/users/fetch_bookmarks").then(res => {
       this.setState({ bookmarks: res.data.msg });
     });
   }

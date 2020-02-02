@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
+import Axios from "axios";
 
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
@@ -13,9 +14,9 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
-import {Facts} from './components/facts/facts'
-import AddFacts from './components/addFacts/AddFacts'
-import BookmarkedFacts from './components/bookmarked_facts/BookmarkedFacts'
+import { Facts } from "./components/facts/facts";
+import AddFacts from "./components/addFacts/AddFacts";
+import BookmarkedFacts from "./components/bookmarked_facts/BookmarkedFacts";
 
 import "./App.css";
 
@@ -39,21 +40,28 @@ if (localStorage.jwtToken) {
   }
 }
 class App extends Component {
+  componentDidMount() {
+    Axios.defaults.baseURL = "https://protected-wave-06859.herokuapp.com/";
+  }
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
+          <div className='App'>
             <Navbar />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/facts" component={Facts} />
-            <Route exact path="/add_fact" component={AddFacts} />
+            <Route exact path='/' component={Landing} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/facts' component={Facts} />
+            <Route exact path='/add_fact' component={AddFacts} />
 
             <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/bookmarks" component={BookmarkedFacts} />
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute
+                exact
+                path='/bookmarks'
+                component={BookmarkedFacts}
+              />
             </Switch>
           </div>
         </Router>
