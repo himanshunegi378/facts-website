@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+
 let ToggleBookmark = props => {
   return (
     <div className='bookmark right-align  '>
@@ -26,7 +27,7 @@ let ToggleBookmark = props => {
 let Item = props => {
   let isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   return (
-    <div className=' card hoverable'>
+    <div className=' card '>
       <div className='card-content'>
         {isAuthenticated === true ? (
           <ToggleBookmark objectID={props._id} />
@@ -60,7 +61,7 @@ class facts extends Component {
       return <Item key={fact._id} _id={fact._id} value={fact.fact} />;
     });
     return <div className='container section'>
-      <div className='card z-depth-0 right-align '> <Link className='btn hoverable blue darken-1' to='/bookmarks'>Bookmarks</Link></div>
+      <div className='card z-depth-0 right-align '> <Link className='btn btn-block waves-effect waves-light hoverable blue accent-3' to='/bookmarks'>Bookmarks</Link></div>
       {item}
       </div>;
   }

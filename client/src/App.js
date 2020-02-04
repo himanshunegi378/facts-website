@@ -42,6 +42,7 @@ if (localStorage.jwtToken) {
 class App extends Component {
   componentDidMount() {
     Axios.defaults.baseURL = "https://protected-wave-06859.herokuapp.com/";
+    // Axios.defaults.baseURL = "http://localhost:5000/";
   }
   render() {
     return (
